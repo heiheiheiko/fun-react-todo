@@ -1,29 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import TodoListItem from './TodoListItem/TodoListItem';
 import TodoListAddForm from './TodoListAddForm/TodoListAddForm';
 
 class TodoList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      listItems: [
-        {
-          id: 1,
-          label: "Waschen",
-          isDone: true
-        },
-        {
-          id: 2,
-          label: "Aufräumen",
-          isDone: false
-        },
-      ],
-      addLabelFieldValue: "",
-      nextListItemId: 3
-    };
-  }
-
   onTodoListAddFormChange() {
     this.setState({addLabelFieldValue: event.target.value});
   }
@@ -70,13 +51,13 @@ class TodoList extends React.Component {
   }
 
   render() {
-    const listItems = this.state.listItems
+    const listItems = this.props.listItems
 
     return (
        <div>
         <h2 className="title is-2">{this.props.title}</h2>
         <TodoListAddForm 
-          value={this.state.addLabelFieldValue} 
+          value={this.props.addLabelFieldValue} 
           onSubmit={() => this.onTodoListAddFormSubmit()}
           onChange={() => this.onTodoListAddFormChange()}
         />
@@ -101,4 +82,13 @@ TodoList.propTypes = {
   title: PropTypes.string,
 };
 
-export default TodoList;
+const mapState = state => ({
+  listItems: state.listItems,
+});
+
+const mapDispatch = dispatch => ({});
+
+export default connect(
+  mapState,
+  mapDispatch
+)(TodoList);
