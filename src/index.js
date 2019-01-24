@@ -3,10 +3,10 @@ import '../assets/styles/main.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const title = 'My Minimal React Webpack Babel Setup';
+import TodoList from './components/TodoList/TodoList';
 
 ReactDOM.render(
-  <div>{title}</div>,
+  <TodoList title="My Todo List"/>,
   document.getElementById('app')
 );
 
