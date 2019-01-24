@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
-import { addListItem } from "../../../redux/actions";
+import { addListItem } from "../../redux/actions";
 
 class TodoListAddForm extends React.Component {
   constructor(props) {

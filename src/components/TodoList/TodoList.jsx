@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import TodoListItem from './TodoListItem/TodoListItem';
-import TodoListAddForm from './TodoListAddForm/TodoListAddForm';
+import TodoListItem from './TodoListItem';
+import TodoListAddForm from './TodoListAddForm';
 
 class TodoList extends React.Component {
   render() {

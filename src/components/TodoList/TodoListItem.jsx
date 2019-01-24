@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
-import { removeListItem, updateListItem } from "../../../redux/actions";
+import { removeListItem, updateListItem } from "../../redux/actions";
 
 class TodoListItem extends React.Component {
 
