@@ -12,9 +12,7 @@ const initialState = {
       label: "Aufräumen",
       isDone: false
     }
-  ],
-  addLabelFieldValue: "",
-  nextListItemId: 3
+  ]
 };
 
 function rootReducer(state = initialState, action) {

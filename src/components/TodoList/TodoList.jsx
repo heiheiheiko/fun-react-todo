@@ -5,28 +5,6 @@ import TodoListItem from './TodoListItem/TodoListItem';
 import TodoListAddForm from './TodoListAddForm/TodoListAddForm';
 
 class TodoList extends React.Component {
-  onTodoListAddFormChange() {
-    this.setState({addLabelFieldValue: event.target.value});
-  }
-
-  onTodoListAddFormSubmit() {
-    event.preventDefault();
-
-    const newListItem = {
-      id: this.state.nextListItemId,
-      label: this.state.addLabelFieldValue,
-      isDone: false,
-    }
-    const listItems = [...this.state.listItems, newListItem];
-
-    this.setState(
-      {
-        listItems: listItems,
-        nextListItemId: this.state.nextListItemId + 1
-      }
-    );
-  }
-
   onTodoListItemChange(id){
     const listItems = this.state.listItems.map((listItem) => {
       if (listItem.id === id) {
@@ -56,11 +34,7 @@ class TodoList extends React.Component {
     return (
        <div>
         <h2 className="title is-2">{this.props.title}</h2>
-        <TodoListAddForm 
-          value={this.props.addLabelFieldValue} 
-          onSubmit={() => this.onTodoListAddFormSubmit()}
-          onChange={() => this.onTodoListAddFormChange()}
-        />
+        <TodoListAddForm />
 
         <ul>
           {listItems.map((listItem) =>
