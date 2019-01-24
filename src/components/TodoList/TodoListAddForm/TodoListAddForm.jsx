@@ -49,11 +49,8 @@ TodoListAddForm.propTypes = {
   addListItem: PropTypes.func,
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
-    addListItem: listItem => dispatch(addListItem(listItem))
-  };
-}
-const ConnectedTodoListAddForm = connect(null, mapDispatchToProps)(TodoListAddForm);
-
-export default ConnectedTodoListAddForm;
+const mapDispatch = dispatch => ({
+   addListItem: listItem => dispatch(addListItem(listItem)) 
+});
+const ConnectedComponent = connect(null, mapDispatch)(TodoListAddForm);
+export default ConnectedComponent;

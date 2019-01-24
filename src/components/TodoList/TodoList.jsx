@@ -56,13 +56,6 @@ TodoList.propTypes = {
   title: PropTypes.string,
 };
 
-const mapState = state => ({
-  listItems: state.listItems,
-});
-
-const mapDispatch = dispatch => ({});
-
-export default connect(
-  mapState,
-  mapDispatch
-)(TodoList);
+const mapState = state => ({ listItems: state.listItems });
+const ConnectedComponent = connect(mapState, null)(TodoList);
+export default ConnectedComponent;
