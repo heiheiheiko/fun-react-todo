@@ -5,29 +5,6 @@ import TodoListItem from './TodoListItem/TodoListItem';
 import TodoListAddForm from './TodoListAddForm/TodoListAddForm';
 
 class TodoList extends React.Component {
-  onTodoListItemChange(id){
-    const listItems = this.state.listItems.map((listItem) => {
-      if (listItem.id === id) {
-        listItem.isDone = event.target.checked;
-        return listItem
-      } else {
-        return listItem;
-      }
-    });
-    
-    this.setState({
-      listItems: listItems,
-    });
-  }
-
-  onTodoListItemDelete(id){
-    const listItems = this.state.listItems.filter((listItem) => listItem.id !== id);
-    
-    this.setState({
-      listItems: listItems,
-    });
-  }
-
   render() {
     const listItems = this.props.listItems
 
@@ -41,9 +18,8 @@ class TodoList extends React.Component {
             <TodoListItem 
               label={listItem.label} 
               isDone={listItem.isDone} 
-              onChange={() => this.onTodoListItemChange(listItem.id)}
-              onDelete={() => this.onTodoListItemDelete(listItem.id)}
-              key={listItem.id} 
+              key={listItem.id}
+              id={listItem.id} 
             />
           )}
         </ul>
@@ -54,6 +30,7 @@ class TodoList extends React.Component {
 
 TodoList.propTypes = {
   title: PropTypes.string,
+  listItems: PropTypes.array,
 };
 
 const mapState = state => ({ listItems: state.listItems });

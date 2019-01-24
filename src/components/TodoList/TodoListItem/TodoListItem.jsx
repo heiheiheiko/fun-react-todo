@@ -1,7 +1,23 @@
 import React from 'react';
+import { connect } from "react-redux";
 import PropTypes from 'prop-types';
+import { removeListItem, updateListItem } from "../../../redux/actions";
 
 class TodoListItem extends React.Component {
+
+  onChange(){
+    this.props.updateListItem({
+      id: this.props.id,
+      label: this.props.label,
+      isDone: !this.props.isDone,
+    });
+  }
+
+  onDelete() {
+    event.preventDefault();
+    this.props.removeListItem(this.props.id);
+  }
+
   render() {
     return (
       <li>
@@ -10,13 +26,13 @@ class TodoListItem extends React.Component {
           type="checkbox" 
           name="isDone" 
           defaultChecked={this.props.isDone} 
-          onChange={this.props.onChange} 
+          onChange={() => this.onChange()} 
         />
         <input 
           type="button" 
           name="delete" 
           value="delete"
-          onClick={this.props.onDelete} 
+          onClick={() => this.onDelete()} 
         />
       </li>
     );
@@ -24,10 +40,18 @@ class TodoListItem extends React.Component {
 }
 
 TodoListItem.propTypes = {
+  id: PropTypes.number,
   label: PropTypes.string,
   isDone: PropTypes.bool,
   onChange: PropTypes.func,
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
+  removeListItem: PropTypes.func,
+  updateListItem: PropTypes.func
 };
 
-export default TodoListItem;
+const mapDispatch = dispatch => ({
+  removeListItem: listItem => dispatch(removeListItem(listItem)) ,
+  updateListItem: listItem => dispatch(updateListItem(listItem))
+});
+const ConnectedComponent = connect(null, mapDispatch)(TodoListItem);
+export default ConnectedComponent;
