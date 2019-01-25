@@ -1,4 +1,5 @@
-import { ADD_LIST_ITEM, REMOVE_LIST_ITEM, UPDATE_LIST_ITEM } from "./action-types";
+import { ADD_LIST_ITEM, REMOVE_LIST_ITEM, UPDATE_LIST_ITEM, 
+         SHOW_APP_NOTIFICATION, HIDE_APP_NOTIFICATION } from "./action-types";
 
 const initialState = {
   listItems: [
@@ -12,7 +13,9 @@ const initialState = {
       label: "Aufräumen",
       isDone: false
     }
-  ]
+  ],
+  AppNotificationIsActive: false,
+  AppNotificationContent: "lorem ipsum"
 };
 
 function rootReducer(state = initialState, action) {
@@ -41,6 +44,23 @@ function rootReducer(state = initialState, action) {
       listItems: state.listItems.filter((listItem) => listItem.id !== action.id)
     });
   }
+
+  if (action.type === SHOW_APP_NOTIFICATION) {
+    return Object.assign({}, state, {
+      AppNotificationIsActive: true,
+      AppNotificationContent: action.content,
+    });
+  }
+
+  if (action.type === HIDE_APP_NOTIFICATION) {
+    return Object.assign({}, state, {
+      AppNotificationIsActive: false,
+      AppNotificationContent: "",
+    });
+  }
+
+  
+  
   return state;
 }
 
