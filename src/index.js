@@ -6,11 +6,11 @@ import { Provider } from "react-redux";
 
 import store from "./redux/store";
 
-import TodoList from './components/TodoList/TodoList';
+import App from './components/Layout/App';
 
 render(
   <Provider store={store}>
-    <TodoList title="My Todo List"/>
+    <App/>
   </Provider>,
   document.getElementById('app')
 );
