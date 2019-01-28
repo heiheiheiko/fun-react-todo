@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from 'react-intl'
 import TodoList from "../components/TodoList/TodoList";
 import AboutPage from "../components/pages/AboutPage";
 
@@ -12,7 +13,7 @@ const appNavItems = [
   {
     id: "about-page",
     path: "/page/about",
-    title: "About",
+    title: <FormattedMessage id="pages.about.title"/>,
     component: AboutPage
   }
 ];

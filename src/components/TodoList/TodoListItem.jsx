@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl'
 import { removeListItem, updateListItem } from "../../redux/actions";
 
 class TodoListItem extends React.Component {
@@ -28,12 +29,17 @@ class TodoListItem extends React.Component {
           defaultChecked={this.props.isDone} 
           onChange={() => this.onChange()} 
         />
-        <input 
-          type="button" 
-          name="delete" 
-          value="delete"
-          onClick={() => this.onDelete()} 
-        />
+        <FormattedMessage id="actions.delete"> 
+          {(trans) => (
+            <input 
+              type="button" 
+              name="delete" 
+              value={trans}
+              onClick={() => this.onDelete()} 
+            />
+          )}
+        </FormattedMessage>
+        
       </li>
     );
   }

@@ -4,13 +4,22 @@ import React from 'react';
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 
-import store from "./redux/store";
+import { IntlProvider, addLocaleData } from 'react-intl';
+import en from "react-intl/locale-data/en";
+import de from "react-intl/locale-data/de";
+import locales from "./locales/locales";
 
+import store from "./redux/store";
 import App from './components/Layout/App';
+
+addLocaleData([...en, ...de]);
+const currentLocale = "de"
 
 render(
   <Provider store={store}>
-    <App/>
+    <IntlProvider locale={currentLocale} messages={locales[currentLocale]}>
+      <App/>
+    </IntlProvider>
   </Provider>,
   document.getElementById('app')
 );

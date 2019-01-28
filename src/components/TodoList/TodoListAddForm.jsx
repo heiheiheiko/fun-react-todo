@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl'
 import { addListItem } from "../../redux/actions";
 
 class TodoListAddForm extends React.Component {
@@ -36,7 +37,11 @@ class TodoListAddForm extends React.Component {
     return (
       <form onSubmit={() => this.onSubmit()}>
         <input type="text" name="label" value={this.state.labelFieldValue} onChange={() => this.onChange()} />
-        <input type="submit" value="add" />
+        <FormattedMessage id="actions.add"> 
+          {(trans) => (
+            <input type="submit" value={trans} />
+          )}
+        </FormattedMessage>
       </form>
     );
   }
