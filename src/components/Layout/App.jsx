@@ -1,13 +1,30 @@
 import React from 'react';
-import TodoList from '../TodoList/TodoList'
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import AppNotification from './AppNotification'
+import appNavItems from "../../config/AppNav"
 
 function App(){
   return (
-    <div>
-      <AppNotification/>
-      <TodoList title="My Todo List"/>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          {appNavItems.map((navItem) =>
+            <NavLink 
+              to={navItem.path} 
+              key={navItem.id} 
+              activeClassName="is-active"> 
+              {navItem.title} 
+            </NavLink>  
+          )}
+        </nav>
+
+        <AppNotification/>
+        
+        {appNavItems.map((navItem) =>
+          <Route path={navItem.path} component={navItem.component} key={navItem.id}/>
+        )}
+      </div>
+    </Router>
   );
 }
 
